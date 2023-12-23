@@ -23,9 +23,9 @@ services:
     networks:
       - app-network
 
-  zookeeper:
+  zookeeper_1:
     image: confluentinc/cp-zookeeper
-    container_name: zookeeper
+    container_name: zookeeper1
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -34,13 +34,13 @@ services:
     networks:
       - app-network
 
-  kafka:
+  kafka_1:
     image: confluentinc/cp-kafka
-    container_name: kafka
+    container_name: kafka1
     depends_on:
-      - zookeeper
+      - zookeeper_1
     environment:
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper_1:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
