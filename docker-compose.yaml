@@ -48,6 +48,14 @@ services:
     networks:
       - app-network
 
+  kafka-ui_1:
+    container_name: kafka-ui_1
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 8063:8062
+    environment:
+      DYNAMIC_CONFIG_ENABLED: true
+
 networks:
   app-network:
     driver: bridge
